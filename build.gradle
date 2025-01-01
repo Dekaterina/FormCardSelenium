@@ -1,0 +1,25 @@
+plugins {
+    id 'java'
+}
+
+group = 'org.example'
+version = '1.0-SNAPSHOT'
+
+compileJava.options.encoding = "UTF-8"
+compileTestJava.options.encoding = "UTF-8"
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation 'org.seleniumhq.selenium:selenium-java:3.141.59'
+    testImplementation 'org.seleniumhq.selenium:selenium-chrome-driver:3.141.59'
+    testImplementation "io.github.bonigarcia:webdrivermanager:4.4.0"
+    testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter', version: '5.7.1'
+}
+
+test {
+    useJUnitPlatform()
+    systemProperty 'chromeoptions.prefs', System.getProperty('chromeoptions.prefs', "profile.password_manager_leak_detection=false")
+}
